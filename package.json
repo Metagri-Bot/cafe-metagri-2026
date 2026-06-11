@@ -1,0 +1,14 @@
+{
+  "name": "cafe-metagri-2026",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "vercel:dev": "vercel dev",
+    "preview": "python -m http.server 5177",
+    "check:api": "node -e \"fetch('http://127.0.0.1:3000/api/crowdfunding-summary').then(r=>r.json()).then(console.log)\""
+  }
+}

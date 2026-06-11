@@ -22,3 +22,23 @@ Then open:
 ```text
 http://127.0.0.1:5177/
 ```
+
+## Vercel preview
+
+Use Vercel Dev when testing API routes:
+
+```bash
+vercel dev
+```
+
+## Airtable integration
+
+Crowdfunding application data is planned to live in Airtable. The public site should not call Airtable directly because the Airtable token must stay server-side.
+
+The prepared endpoint is:
+
+```text
+/api/crowdfunding-summary
+```
+
+See [docs/airtable-vercel-plan.md](./docs/airtable-vercel-plan.md) and [.env.example](./.env.example).
