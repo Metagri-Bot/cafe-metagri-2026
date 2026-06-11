@@ -640,19 +640,22 @@ h1 {
 }
 
 .discord-split {
-  grid-template-columns: minmax(320px, 0.95fr) minmax(0, 1.05fr);
-  align-items: start;
+  grid-template-columns: 1fr;
+  gap: 26px;
+  align-items: stretch;
 }
 
 .discord-panel {
-  position: sticky;
-  top: 92px;
+  position: relative;
+  top: auto;
+  width: min(960px, 100%);
+  margin: 0 auto;
   padding: 12px;
   background: #fff;
   border: 1.5px solid var(--line);
   border-radius: 6px;
   box-shadow: 5px 8px 0 rgba(74, 56, 38, 0.14), 0 10px 30px rgba(74, 56, 38, 0.12);
-  transform: rotate(-0.8deg);
+  transform: rotate(-0.5deg);
 }
 
 .discord-panel img {
@@ -670,7 +673,11 @@ h1 {
 }
 
 .step-list.compact {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.step-list.compact .step {
+  min-height: 190px;
 }
 
 .step {
@@ -824,6 +831,10 @@ h1 {
 
   .step-list {
     grid-template-columns: 1fr;
+  }
+
+  .step-list.compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .benefit-card.wide {
