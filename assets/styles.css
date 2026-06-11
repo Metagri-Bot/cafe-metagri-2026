@@ -359,6 +359,7 @@ h1 {
 .card,
 .role-card,
 .page-tile,
+.benefit-card,
 .step,
 .notice {
   position: relative;
@@ -371,6 +372,7 @@ h1 {
 
 .card,
 .page-tile,
+.benefit-card,
 .notice {
   padding: 26px 24px 22px;
 }
@@ -428,6 +430,7 @@ h1 {
 }
 
 .card h3,
+.benefit-card h3,
 .page-tile h3,
 .role-card h3 {
   margin-bottom: 8px;
@@ -436,6 +439,7 @@ h1 {
 }
 
 .card p,
+.benefit-card p,
 .page-tile p,
 .role-card p,
 .step p {
@@ -570,6 +574,19 @@ h1 {
   padding: 22px 20px;
 }
 
+.role-icon {
+  display: inline-block;
+  margin-right: 8px;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.role-fit {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(74, 56, 38, 0.28);
+  font-size: 14px;
+}
+
 .role-meta {
   display: flex;
   flex-wrap: wrap;
@@ -608,6 +625,41 @@ h1 {
   color: var(--leaf);
 }
 
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.benefit-card {
+  min-height: 170px;
+}
+
+.benefit-card.wide {
+  grid-column: span 2;
+}
+
+.discord-split {
+  grid-template-columns: minmax(320px, 0.95fr) minmax(0, 1.05fr);
+  align-items: start;
+}
+
+.discord-panel {
+  position: sticky;
+  top: 92px;
+  padding: 12px;
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 5px 8px 0 rgba(74, 56, 38, 0.14), 0 10px 30px rgba(74, 56, 38, 0.12);
+  transform: rotate(-0.8deg);
+}
+
+.discord-panel img {
+  width: 100%;
+  border-radius: 4px;
+}
+
 /* ---------- ステップ（スタンプ風ナンバー） ---------- */
 
 .step-list {
@@ -615,6 +667,10 @@ h1 {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 14px;
   counter-reset: step;
+}
+
+.step-list.compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .step {
@@ -761,12 +817,23 @@ h1 {
   .section-header,
   .split,
   .grid.two,
-  .grid.three {
+  .grid.three,
+  .benefit-grid {
     grid-template-columns: 1fr;
   }
 
   .step-list {
     grid-template-columns: 1fr;
+  }
+
+  .benefit-card.wide {
+    grid-column: auto;
+  }
+
+  .discord-panel {
+    position: relative;
+    top: auto;
+    transform: rotate(-0.4deg);
   }
 
   .note-band .container,
@@ -798,7 +865,12 @@ h1 {
   }
 
   .grid .card,
-  .step {
+  .step,
+  .discord-panel {
     transform: none;
+  }
+
+  .step-list.compact {
+    grid-template-columns: 1fr;
   }
 }

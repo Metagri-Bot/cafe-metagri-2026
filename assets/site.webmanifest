@@ -1,0 +1,19 @@
+{
+  "name": "カフェMetagri",
+  "short_name": "Cafe Metagri",
+  "icons": [
+    {
+      "src": "カフェMetagriのロゴ.png",
+      "sizes": "1254x1254",
+      "type": "image/png"
+    },
+    {
+      "src": "カフェMetagriの募集KV正方形.png",
+      "sizes": "752x752",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#f2e8d5",
+  "background_color": "#f2e8d5",
+  "display": "standalone"
+}
