@@ -763,15 +763,66 @@ h1 {
   color: rgba(255, 250, 240, 0.8);
 }
 
-.footer .container {
+.footer-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 22px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 18px;
 }
 
 .footer a {
   color: #fffaf0;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 7px 12px 7px 8px;
+  border: 1px dashed rgba(255, 250, 240, 0.32);
+  border-radius: 999px;
+  background: rgba(255, 250, 240, 0.08);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+
+.footer-social a:hover {
+  border-color: rgba(255, 250, 240, 0.68);
+  background: rgba(255, 250, 240, 0.16);
+  transform: translateY(-1px);
+}
+
+.social-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--soil-deep);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
 }
 
 /* ---------- 準備中プレースホルダー ---------- */
@@ -848,9 +899,13 @@ h1 {
   }
 
   .note-band .container,
-  .footer .container {
+  .footer-inner {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .footer-social {
+    justify-content: flex-start;
   }
 
   .photo-panel {
