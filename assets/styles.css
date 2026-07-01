@@ -251,7 +251,8 @@ h1 {
 
 .support-hero-copy h1 {
   color: var(--soil);
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: clamp(30px, 4.2vw, 44px);
+  line-height: 1.24;
   text-shadow: none;
 }
 
@@ -328,6 +329,249 @@ h1 {
 
 .return-grid .benefit-card {
   min-height: 210px;
+}
+
+.progress-panel {
+  padding: 28px 26px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  background-image: var(--grain);
+  box-shadow: var(--shadow);
+}
+
+.progress-figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 36px;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.progress-figures .amount {
+  color: var(--leaf-dark);
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.progress-figures .label {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.progress-track {
+  height: 18px;
+  overflow: hidden;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: var(--kraft-deep);
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--leaf), var(--sun));
+  transition: width 900ms ease;
+}
+
+.progress-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 18px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.info-table,
+.legal-table {
+  width: 100%;
+  border: 2px solid var(--line);
+  border-collapse: collapse;
+  background: var(--cream);
+  background-image: var(--grain);
+  box-shadow: var(--shadow);
+  font-size: 15px;
+}
+
+.info-table th,
+.info-table td,
+.legal-table th,
+.legal-table td {
+  border: 1px solid var(--line);
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.info-table th,
+.legal-table th {
+  width: 12em;
+  background: var(--kraft-deep);
+  color: var(--soil);
+  font-family: var(--font-display);
+  white-space: nowrap;
+}
+
+.info-table td .sub {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.plans {
+  align-items: stretch;
+}
+
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100%;
+  padding: 24px 22px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  background-image: var(--grain);
+  box-shadow: var(--shadow);
+}
+
+.plan-card.sponsor {
+  border-color: var(--sun);
+  background:
+    linear-gradient(180deg, rgba(255, 248, 232, 0.9), rgba(255, 250, 240, 0.95)),
+    var(--grain);
+}
+
+.plan-price {
+  color: var(--tomato);
+  font-family: var(--font-display);
+  font-size: 27px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.plan-price small {
+  margin-left: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.plan-name {
+  margin: 0;
+  color: var(--soil);
+  font-size: 19px;
+}
+
+.plan-list {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.plan-list li {
+  margin-bottom: 4px;
+}
+
+.plan-fit {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1.5px dashed var(--line);
+  color: var(--leaf-dark);
+  font-family: var(--font-hand);
+  font-size: 15px;
+}
+
+.plan-slots {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.plan-slots strong {
+  color: var(--tomato);
+}
+
+.plan-card .button {
+  text-align: center;
+}
+
+.cta-disabled {
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.split .step-list.compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* ---------- 法務ページ ---------- */
+
+.legal {
+  width: min(860px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 0 72px;
+}
+
+.legal h1 {
+  color: var(--soil);
+  font-size: clamp(26px, 3.6vw, 36px);
+  text-shadow: none;
+}
+
+.legal .updated {
+  margin-bottom: 32px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.legal section {
+  margin-bottom: 40px;
+}
+
+.legal h2 {
+  margin: 40px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px dashed var(--line);
+  color: var(--soil);
+  font-size: 22px;
+}
+
+.legal h3 {
+  margin: 26px 0 8px;
+  color: var(--leaf-dark);
+  font-size: 17px;
+}
+
+.legal ol,
+.legal ul {
+  padding-left: 1.4em;
+}
+
+.legal li {
+  margin-bottom: 6px;
+}
+
+.legal .toc {
+  padding: 20px 24px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  background-image: var(--grain);
+  box-shadow: var(--shadow);
+  font-size: 14px;
+}
+
+.legal .toc ul {
+  columns: 2;
+  margin: 8px 0 0;
+}
+
+.legal-actions {
+  margin-top: 40px;
 }
 
 /* ---------- ボタン（スタンプ・活版風） ---------- */
@@ -991,6 +1235,10 @@ h1 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .split .step-list.compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .benefit-card.wide {
     grid-column: auto;
   }
@@ -1018,6 +1266,16 @@ h1 {
   .kv-board,
   .image-board {
     transform: rotate(-0.3deg);
+  }
+
+  .info-table th,
+  .legal-table th {
+    width: 9em;
+    white-space: normal;
+  }
+
+  .legal .toc ul {
+    columns: 1;
   }
 }
 
@@ -1059,5 +1317,29 @@ h1 {
 
   .step-list.compact {
     grid-template-columns: 1fr;
+  }
+
+  .split .step-list.compact {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-figures {
+    gap: 14px;
+  }
+
+  .progress-meta {
+    flex-direction: column;
+  }
+
+  .info-table,
+  .legal-table {
+    font-size: 14px;
+  }
+
+  .info-table th,
+  .info-table td,
+  .legal-table th,
+  .legal-table td {
+    padding: 10px;
   }
 }
