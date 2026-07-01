@@ -152,6 +152,11 @@ a {
   transform: scale(1.02);
 }
 
+.hero.funding-hero::before {
+  background-image: url("./cafe-metagri-funding-kv.png");
+  background-position: center;
+}
+
 .hero::after {
   content: "";
   position: absolute;
@@ -226,6 +231,103 @@ h1 {
   flex-wrap: wrap;
   gap: 14px;
   align-items: center;
+}
+
+/* ---------- クラファン企画ページ ---------- */
+
+.support-hero {
+  padding: 64px 0 72px;
+  background-color: var(--kraft-deep);
+  background-image: var(--grain);
+  border-bottom: 2px dashed rgba(74, 56, 38, 0.25);
+}
+
+.support-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(360px, 1.12fr);
+  gap: 38px;
+  align-items: center;
+}
+
+.support-hero-copy h1 {
+  color: var(--soil);
+  font-size: clamp(32px, 5vw, 56px);
+  text-shadow: none;
+}
+
+.support-hero-copy p {
+  color: var(--muted);
+}
+
+.kv-board,
+.image-board {
+  position: relative;
+  margin: 0;
+  padding: 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 6px 9px 0 rgba(74, 56, 38, 0.14), 0 12px 32px rgba(74, 56, 38, 0.12);
+}
+
+.kv-board {
+  transform: rotate(0.8deg);
+}
+
+.image-board {
+  transform: rotate(-0.7deg);
+}
+
+.kv-board::before,
+.image-board::before {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  width: 120px;
+  height: 26px;
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.28) 0 7px, transparent 7px 14px),
+    rgba(233, 169, 61, 0.85);
+  transform: translateX(-50%) rotate(2deg);
+  clip-path: polygon(2% 0%, 98% 6%, 100% 40%, 98% 100%, 2% 94%, 0% 52%);
+  box-shadow: 0 1px 4px rgba(74, 56, 38, 0.22);
+}
+
+.kv-board img,
+.image-board img {
+  width: 100%;
+  border-radius: 3px;
+}
+
+.kv-board img {
+  aspect-ratio: 1003 / 564;
+  object-fit: cover;
+}
+
+.image-board.tall {
+  width: min(520px, 100%);
+  justify-self: center;
+}
+
+.visual-split {
+  align-items: center;
+}
+
+.funding-summary h2 {
+  color: var(--soil);
+  font-size: 24px;
+  text-shadow: none;
+}
+
+.funding-summary strong {
+  color: var(--tomato);
+  font-family: var(--font-display);
+  font-size: 28px;
+}
+
+.return-grid .benefit-card {
+  min-height: 210px;
 }
 
 /* ---------- ボタン（スタンプ・活版風） ---------- */
@@ -874,6 +976,7 @@ h1 {
 
   .section-header,
   .split,
+  .support-hero-grid,
   .grid.two,
   .grid.three,
   .benefit-grid {
@@ -911,6 +1014,11 @@ h1 {
   .photo-panel {
     transform: rotate(-0.8deg);
   }
+
+  .kv-board,
+  .image-board {
+    transform: rotate(-0.3deg);
+  }
 }
 
 @media (max-width: 560px) {
@@ -928,6 +1036,19 @@ h1 {
 
   .section {
     padding: 52px 0;
+  }
+
+  .support-hero {
+    padding: 42px 0 52px;
+  }
+
+  .support-hero-copy h1 {
+    font-size: 30px;
+  }
+
+  .kv-board,
+  .image-board {
+    padding: 8px;
   }
 
   .grid .card,
