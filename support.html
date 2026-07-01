@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>支援者応募・リターン紹介 | カフェMetagri</title>
-    <meta name="description" content="カフェMetagriの支援者応募、リターン、活動報告、スポンサー枠を案内する準備ページです。">
+    <title>支援する | カフェMetagri — 農家の想いを味わう1DAYカフェを一緒につくりたい</title>
+    <meta name="description" content="カフェMetagriのクラウドファンディングページ。目標15万円・All-in方式。1,000円のちょい応援から3万円のライトスポンサーまで、5つの支援プランを用意しています。">
     <link rel="icon" href="./assets/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" href="./assets/カフェMetagriのロゴ.png">
     <link rel="apple-touch-icon" href="./assets/カフェMetagriの募集KV正方形.png">
@@ -12,17 +12,153 @@
     <meta name="theme-color" content="#f2e8d5">
     <meta property="og:site_name" content="カフェMetagri">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="カフェMetagri | 協力メンバー募集">
-    <meta property="og:description" content="農家さんの食材とストーリーが来場者の応援につながる、Metagri研究所のリアル拠点企画。">
+    <meta property="og:title" content="カフェMetagri | 農家の想いを味わう1DAYカフェを一緒につくりたい">
+    <meta property="og:description" content="目標15万円・All-in方式。未完成の企画を一緒に育てる「共犯者」を募集中。1,000円から支援できます。">
     <meta property="og:image" content="./assets/カフェMetagriの募集KV横長.png">
     <meta property="og:image:width" content="1003">
     <meta property="og:image:height" content="564">
-    <meta property="og:image:alt" content="カフェMetagri 協力メンバー募集キービジュアル">
+    <meta property="og:image:alt" content="カフェMetagri 支援募集キービジュアル">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="カフェMetagri | 協力メンバー募集">
-    <meta name="twitter:description" content="農家さんの食材とストーリーが来場者の応援につながる、Metagri研究所のリアル拠点企画。">
+    <meta name="twitter:title" content="カフェMetagri | 農家の想いを味わう1DAYカフェを一緒につくりたい">
+    <meta name="twitter:description" content="目標15万円・All-in方式。未完成の企画を一緒に育てる「共犯者」を募集中。1,000円から支援できます。">
     <meta name="twitter:image" content="./assets/カフェMetagriの募集KV横長.png">
     <link rel="stylesheet" href="./assets/styles.css">
+    <style>
+      /* support.html 専用の最小追加スタイル（サイト共通テーマに準拠） */
+      .progress-panel {
+        background: var(--cream);
+        border: 2px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 28px 26px;
+      }
+      .progress-figures {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 36px;
+        align-items: baseline;
+        margin-bottom: 12px;
+      }
+      .progress-figures .amount {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        font-weight: 900;
+        color: var(--leaf-dark);
+      }
+      .progress-figures .label {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .progress-track {
+        height: 18px;
+        border-radius: 999px;
+        background: var(--kraft-deep);
+        border: 1.5px solid var(--line);
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        width: 0%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--leaf), var(--sun));
+        transition: width 0.9s ease;
+      }
+      .progress-meta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      table.info-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--cream);
+        border: 2px solid var(--line);
+        box-shadow: var(--shadow);
+        font-size: 0.95rem;
+      }
+      table.info-table th,
+      table.info-table td {
+        border: 1px solid var(--line);
+        padding: 12px 14px;
+        text-align: left;
+        vertical-align: top;
+      }
+      table.info-table th {
+        background: var(--kraft-deep);
+        font-family: var(--font-display);
+        white-space: nowrap;
+        width: 11em;
+      }
+      table.info-table td .sub {
+        display: block;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      .plan-card {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: var(--cream);
+        border: 2px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 24px 22px;
+      }
+      .plan-card.sponsor {
+        border-color: var(--sun);
+        background: linear-gradient(180deg, #fff8e8, var(--cream));
+      }
+      .plan-price {
+        font-family: var(--font-display);
+        font-weight: 900;
+        font-size: 1.7rem;
+        color: var(--tomato);
+        line-height: 1.2;
+      }
+      .plan-price small {
+        font-size: 0.85rem;
+        color: var(--muted);
+        font-weight: 500;
+        margin-left: 6px;
+      }
+      .plan-name {
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin: 0;
+      }
+      .plan-list {
+        margin: 0;
+        padding-left: 1.2em;
+      }
+      .plan-list li { margin-bottom: 4px; }
+      .plan-fit {
+        margin-top: auto;
+        font-family: var(--font-hand);
+        color: var(--leaf-dark);
+        border-top: 1.5px dashed var(--line);
+        padding-top: 10px;
+        font-size: 0.95rem;
+      }
+      .plan-slots {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      .plan-slots strong { color: var(--tomato); }
+      .plan-card .button { text-align: center; }
+      .cta-disabled {
+        opacity: 0.65;
+        pointer-events: none;
+      }
+      .grid.plans { align-items: stretch; }
+      @media (max-width: 720px) {
+        table.info-table th { width: 8em; white-space: normal; }
+      }
+    </style>
   </head>
   <body>
     <header class="site-header">
@@ -37,23 +173,340 @@
         </div>
       </nav>
     </header>
-    <main class="placeholder">
-      <section class="placeholder-box">
-        <span class="status soon">準備中</span>
-        <h1>支援者応募・リターン紹介</h1>
-        <p>目標金額、先行応援金、リターン、活動報告、スポンサー枠をCAMPFIRE風に整理するページです。共創者募集ページの公開後に制作します。</p>
-        <div class="notice" data-crowdfunding-summary>
-          <h2>支援状況</h2>
-          <p>現在の支援総額: <strong data-total-amount>--</strong></p>
-          <p>支援者数: <strong data-supporter-count>--</strong></p>
-          <p data-summary-status>読み込み中...</p>
+
+    <main>
+      <section class="hero" style="--hero-image: url('./assets/hero-cafe-metagri.png')">
+        <div class="hero-inner">
+          <p class="eyebrow">目標150,000円 / All-in方式 / 2026年9月後半開催</p>
+          <h1>農家の想いを味わう1DAYカフェMetagriを、一緒につくりたい。</h1>
+          <p class="hero-copy">Metagri研究所のインターン生発、1日限定のカフェ実証企画。農家さんの食材とストーリーを味わいながら、生活者と生産者がつながる場をゼロから育てます。完成したお店ではなく、未完成の企画を一緒に育てる「共犯者」になってください。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#plans">支援プランを見る（1,000円〜）</a>
+            <a class="button secondary" href="#progress">いまの支援状況</a>
+          </div>
         </div>
-        <div class="actions">
-          <a class="button dark" href="./co-creators.html">先に共創者募集を見る</a>
-          <a class="button light" href="./index.html">LPトップへ戻る</a>
+      </section>
+
+      <section class="section" id="progress">
+        <div class="container section-header">
+          <h2>いまの支援状況</h2>
+          <p>支援状況はAirtableと連動し、入金確認ができた支援から自動で反映されます。</p>
+        </div>
+        <div class="container">
+          <div class="progress-panel" data-crowdfunding-summary>
+            <div class="progress-figures">
+              <div>
+                <span class="label">現在の支援総額</span>
+                <div class="amount" data-total-amount>--</div>
+              </div>
+              <div>
+                <span class="label">支援者数</span>
+                <div class="amount" data-supporter-count>--</div>
+              </div>
+            </div>
+            <div class="progress-track" role="progressbar" aria-label="目標金額への達成率" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-fill" data-progress-fill></div>
+            </div>
+            <div class="progress-meta">
+              <span>目標金額 150,000円（達成率 <strong data-progress-percent>--</strong>）</span>
+              <!-- TODO: 募集期間を確定したら更新 -->
+              <span>募集期間: 2026年7月〜9月予定</span>
+              <span data-summary-status>読み込み中...</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="container split">
+          <div>
+            <p class="eyebrow">「知る機会」が、食の景色を変える。</p>
+            <h2>ただ食べて終わらない、農家さんと生活者がつながる入口をつくります。</h2>
+            <p>カフェMetagriは、農業×テクノロジーのコミュニティ「Metagri研究所」で活動するインターン生から生まれた、1日限定のカフェ実証企画です。</p>
+            <p>農家さんの食材に込められた想いや、食材が手元に届くまでの背景を、スープやドリンク、ストーリーPOP、会話を通じて感じられる場をつくります。知らなければ、ただの野菜かもしれない。でも背景を知ると、食の景色は少し変わります。</p>
+            <p>カフェ単体の売上がゴールではありません。来場をきっかけに、こんな行動につながる循環を検証します。</p>
+            <ul class="check-list">
+              <li>農家さんの商品を直接買う</li>
+              <li>農家さんをSNSでフォローする</li>
+              <li>食べた感想を投稿する</li>
+              <li>Metagri研究所のDiscordに参加する</li>
+              <li>次の企画に関わる</li>
+            </ul>
+          </div>
+          <div class="photo-panel">
+            <img src="./assets/カフェMetagriの募集KV正方形.png" alt="カフェMetagriのキービジュアル">
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container section-header">
+          <h2>プロジェクト基本情報</h2>
+        </div>
+        <div class="container">
+          <table class="info-table">
+            <tbody>
+              <tr>
+                <th>目標金額</th>
+                <td>150,000円</td>
+              </tr>
+              <tr>
+                <th>募集方式</th>
+                <td>All-in方式<span class="sub">目標金額に届かなかった場合も企画を実施し、リターンをお届けします。</span></td>
+              </tr>
+              <tr>
+                <th>実施時期</th>
+                <td>2026年9月後半予定<span class="sub">開催日は会場と安全面の確認が完了し次第、支援者の皆さまへ最初にご案内します。</span></td>
+              </tr>
+              <tr>
+                <th>開催エリア</th>
+                <!-- TODO: 開催エリア確定後に更新 -->
+                <td>調整中（確定次第、このページと活動報告でご案内します）</td>
+              </tr>
+              <tr>
+                <th>形式</th>
+                <td>1DAYカフェ / 小規模ポップアップ<span class="sub">常設カフェの開業ではなく、1日限定の実証企画です。</span></td>
+              </tr>
+              <tr>
+                <th>支援方法</th>
+                <td>このサイトの支援申込フォームから受け付けます<span class="sub">申込後にお送りする案内に沿ってお支払いいただき、入金確認をもって支援確定となります。</span></td>
+              </tr>
+              <tr>
+                <th>運営</th>
+                <td>Metagri研究所 インターン生チーム<span class="sub">食品衛生、会場契約、金銭管理、農家さんへの正式依頼は、Metagri研究所の運営側が責任を持って行います。</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="container section-header">
+          <h2>支援金の使い道</h2>
+          <p>いただいた支援金は、単なる飲食代ではなく、農家さんと生活者をつなぐ実証企画への応援・参加費として活用します。内訳は目安であり、状況により多少前後します。</p>
+        </div>
+        <div class="container">
+          <table class="info-table">
+            <thead>
+              <tr><th>使途</th><th style="width:7em;">目安</th><th>内容</th></tr>
+            </thead>
+            <!-- TODO: 内訳金額は目安。運営側で最終確認のこと -->
+            <tbody>
+              <tr><th>農産物仕入れ費</th><td>30,000円</td><td>農家さんに無償提供を求めず、適正価格で食材を購入します</td></tr>
+              <tr><th>メニュー試作費</th><td>20,000円</td><td>スープ、軽食、ドリンクの試作や試食会に活用します</td></tr>
+              <tr><th>会場費・当日運営費</th><td>40,000円</td><td>1DAYカフェの会場利用、備品、消耗品、清掃、設備利用等</td></tr>
+              <tr><th>広報制作費</th><td>20,000円</td><td>POP、メニュー表、農家紹介カード、SNS素材等の制作</td></tr>
+              <tr><th>実施後レポート制作費</th><td>10,000円</td><td>支援者の皆さまへ届ける活動報告・成果レポートの作成</td></tr>
+              <tr><th>インターン活動費</th><td>30,000円</td><td>企画、準備、発信、振り返りなどの活動を支える費用</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="plans">
+        <div class="container section-header">
+          <h2>支援プランは5つ。関わり方で選べます。</h2>
+          <p>支援者の皆さまを、単なる「お客様」とは考えていません。試作、農家相談、POP制作、活動報告など、企画が育っていく過程から関われるプランを用意しました。現地に行けない方も、1,000円から応援できます。</p>
+        </div>
+        <div class="container grid three plans">
+          <article class="plan-card">
+            <div class="role-meta">
+              <span class="pill">現地参加なしOK</span>
+            </div>
+            <div class="plan-price">1,000円<small>上限なし</small></div>
+            <h3 class="plan-name">ちょい応援プラン</h3>
+            <ul class="plan-list">
+              <li>お礼メッセージ</li>
+              <li>実施後レポートへのお名前掲載（希望者のみ・ニックネーム可）</li>
+            </ul>
+            <p class="plan-slots">提供時期: 2026年10月予定</p>
+            <p class="plan-fit">現地には行けないけれど、インターン生の挑戦を少し応援したい方へ。</p>
+            <a class="button dark js-support-cta" href="#" data-plan="ちょい応援プラン">このプランで支援する</a>
+          </article>
+
+          <article class="plan-card">
+            <div class="role-meta">
+              <span class="pill">現地参加なしOK</span>
+              <span class="pill">裏側レポート</span>
+            </div>
+            <div class="plan-price">3,000円<small>限定15名程度</small></div>
+            <h3 class="plan-name">応援コメント掲載プラン</h3>
+            <ul class="plan-list">
+              <li>試作・農家相談・会場探し・POP制作など、カフェができるまでの裏側レポート閲覧</li>
+              <li>LP・実施後レポートへの応援コメント掲載（希望者のみ）</li>
+              <li>最終レポート閲覧</li>
+            </ul>
+            <p class="plan-slots">提供時期: 2026年8月〜10月予定 / <span data-return-name="応援コメント掲載プラン" data-capacity="15">残り --</span></p>
+            <p class="plan-fit">企画の裏側も楽しみながら応援したい方へ。</p>
+            <a class="button dark js-support-cta" href="#" data-plan="応援コメント掲載プラン">このプランで支援する</a>
+          </article>
+
+          <article class="plan-card">
+            <div class="role-meta">
+              <span class="pill">現地参加</span>
+              <span class="pill">本番カフェ</span>
+            </div>
+            <div class="plan-price">6,000円<small>限定10名程度</small></div>
+            <h3 class="plan-name">カフェ参加プラン</h3>
+            <ul class="plan-list">
+              <li>本番カフェ（2026年9月後半）への参加</li>
+              <li>軽食・ドリンク</li>
+              <li>農家さんのストーリー共有</li>
+              <li>裏側レポート・最終レポート閲覧</li>
+            </ul>
+            <p class="plan-slots">提供時期: 2026年9月後半予定 / <span data-return-name="カフェ参加プラン" data-capacity="10">残り --</span></p>
+            <p class="plan-fit">この金額は飲食代ではなく、実証企画への参加費＋応援費です。現地でカフェMetagriを体験したい方へ。</p>
+            <a class="button dark js-support-cta" href="#" data-plan="カフェ参加プラン">このプランで支援する</a>
+          </article>
+
+          <article class="plan-card">
+            <div class="role-meta">
+              <span class="pill">現地参加</span>
+              <span class="pill">企画会議</span>
+            </div>
+            <div class="plan-price">10,000円<small>限定5名程度</small></div>
+            <h3 class="plan-name">共創参加プラン</h3>
+            <ul class="plan-list">
+              <li>本番カフェへの参加</li>
+              <li>試食会への参加</li>
+              <li>企画会議への参加（意見交換・壁打ちの場）</li>
+              <li>最終レポート閲覧・お名前掲載</li>
+            </ul>
+            <p class="plan-slots">提供時期: 2026年7月〜10月予定 / <span data-return-name="共創参加プラン" data-capacity="5">残り --</span></p>
+            <p class="plan-fit">若者の挑戦や、食と農の場づくりを一歩深く応援したい方へ。ご意見は大切に参考にしますが、最終判断は運営側で行います。</p>
+            <a class="button dark js-support-cta" href="#" data-plan="共創参加プラン">このプランで支援する</a>
+          </article>
+
+          <article class="plan-card sponsor">
+            <div class="role-meta">
+              <span class="pill">協賛枠</span>
+              <span class="pill">教育・食育応援</span>
+            </div>
+            <div class="plan-price">30,000円<small>限定1名程度</small></div>
+            <h3 class="plan-name">ライトスポンサー</h3>
+            <ul class="plan-list">
+              <li>LP・当日POP・実施後レポートへのお名前・屋号・学校名等の掲載</li>
+              <li>裏側レポート・最終レポート閲覧</li>
+            </ul>
+            <p class="plan-slots">提供時期: 2026年9月〜10月予定 / <span data-return-name="ライトスポンサー" data-capacity="1">残り --</span></p>
+            <p class="plan-fit">学生の挑戦や食育活動を応援したい教育関係者、教員、地域の大人応援者向けの協賛枠です。広告効果や集客数を保証するものではありません。掲載名は事前に確認し、公序良俗や企画趣旨に合わない場合は掲載を相談・見送りとさせていただくことがあります。</p>
+            <a class="button dark js-support-cta" href="#" data-plan="ライトスポンサー">このプランで支援する</a>
+          </article>
+
+          <article class="plan-card">
+            <div class="role-meta">
+              <span class="pill">迷ったら</span>
+            </div>
+            <h3 class="plan-name">プラン選びのヒント</h3>
+            <ul class="plan-list">
+              <li>現地に行けない → <strong>1,000円 / 3,000円</strong></li>
+              <li>当日カフェを体験したい → <strong>6,000円</strong></li>
+              <li>企画づくりから関わりたい → <strong>10,000円</strong></li>
+              <li>学生の挑戦を協賛で支えたい → <strong>30,000円</strong></li>
+            </ul>
+            <p class="plan-fit">どのプランでも、支援は「未完成の企画を一緒に育てる」参加のかたちです。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section alt" id="flow">
+        <div class="container section-header">
+          <h2>支援の流れ</h2>
+          <p>このサイトから直接支援を受け付けます。プラットフォーム手数料がかからないぶん、支援金を企画にそのまま活かせます。</p>
+        </div>
+        <div class="container split">
+          <div class="step-list compact">
+            <article class="step">
+              <h3>1. フォームから申し込む</h3>
+              <p>支援プランを選び、申込フォームからお名前・連絡先・希望プランを送信します。</p>
+            </article>
+            <article class="step">
+              <h3>2. 案内メールを受け取る</h3>
+              <p>運営からお支払い方法（振込先等）をメールでご案内します。</p>
+            </article>
+            <article class="step">
+              <h3>3. お支払い・支援確定</h3>
+              <p>入金確認をもって支援確定です。このページの支援状況にも反映されます。</p>
+            </article>
+            <article class="step">
+              <h3>4. 活動報告・リターン</h3>
+              <p>準備の裏側レポートや当日案内をメールでお届けし、各リターンを提供時期に沿ってお届けします。</p>
+            </article>
+          </div>
+          <div class="notice">
+            <h3>All-in方式・変更・中止について</h3>
+            <p>本企画はAll-in方式です。目標金額に届かなかった場合も企画を実施し、リターンをお届けします。</p>
+            <p>天候、会場都合、運営上の安全判断により、内容が一部変更になる可能性があります。開催が中止・延期となった場合の対応（代替日程・返金等）は、確定次第すみやかに支援者の皆さまへご案内します。</p>
+            <p>詳細は<a href="./terms.html">販売規約</a>をご確認ください。領収書が必要な方は、申込時にお知らせください。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container split">
+          <div>
+            <p class="eyebrow">運営について</p>
+            <h2>Metagri研究所のインターン生チームが、手探りで進めています。</h2>
+            <p>Metagri研究所は、「農業の常識を超越する」を合言葉に、農業×AI・web3などの新しい仕組みづくりに挑戦しているコミュニティです。カフェMetagriは、そこで活動するインターン生の発案から始まりました。</p>
+            <p>メンバーそれぞれが、発信、メニュー考案、農家さんのストーリー整理、当日の体験設計、資金集めを手探りで進めています。最初から完成されたお店をつくるわけではありません。失敗や改善も含めて、農家さん・支援者の皆さん・コミュニティと一緒に育てていくプロジェクトです。</p>
+            <!-- TODO: 連携農家・インターンメンバーの紹介（名前・写真・一言）を確定次第追加 -->
+            <p>連携する農家さんとインターンメンバーの紹介は、確定次第このページと活動報告でお届けします。</p>
+          </div>
+          <div>
+            <h3>現在の準備状況</h3>
+            <ul class="check-list">
+              <li>メニュー検討: 食材の背景を伝えやすいスープ、軽食、ドリンクを中心に試作中</li>
+              <li>農家さんとの連携: 旬やストーリーのある食材を、適正価格で購入する方針</li>
+              <li>会場と体験設計: 食品提供条件、当日導線、ストーリーPOP、QR導線、アンケートを設計中</li>
+              <li>活動報告: 準備過程や試作の様子を支援者の皆さんに共有できるよう準備中</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="faq">
+        <div class="container section-header">
+          <h2>よくある質問</h2>
+        </div>
+        <div class="container grid three">
+          <article class="card">
+            <h3>現地に行けなくても支援できますか？</h3>
+            <p>はい。1,000円のちょい応援プラン、3,000円の応援コメント掲載プランは、現地参加が難しい方にもおすすめです。</p>
+          </article>
+          <article class="card">
+            <h3>開催場所や時間はいつ分かりますか？</h3>
+            <p>会場と安全面の確認が完了し次第、支援者の皆さまへ最初にご案内します。2026年9月後半の開催を予定しています。</p>
+          </article>
+          <article class="card">
+            <h3>アレルギー対応はありますか？</h3>
+            <p>現地参加・試食会参加の方には、事前にアレルギー情報を確認します。安全に提供できない場合は、内容の一部変更や代替対応をご相談させていただくことがあります。</p>
+          </article>
+          <article class="card">
+            <h3>名前やコメントは必ず公開されますか？</h3>
+            <p>いいえ。名前やコメントの掲載は希望者のみです。掲載名はニックネームも可能です。</p>
+          </article>
+          <article class="card">
+            <h3>共創参加プランでは企画内容を決められますか？</h3>
+            <p>企画会議は意見交換・壁打ちの場です。ご意見は参考にしますが、食品衛生、安全管理、運営上の理由から、最終判断は運営側で行います。</p>
+          </article>
+          <article class="card">
+            <h3>支払い方法と領収書は？</h3>
+            <p>申込フォーム送信後、お支払い方法をメールでご案内します。領収書が必要な方（スポンサー枠等）は申込時にお知らせください。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="note-band">
+        <div class="container">
+          <div>
+            <h2>未完成な企画の余白を、一緒に面白がってくれませんか。</h2>
+            <p>カフェMetagriは、現在進行形のドキュメンタリーです。1日だけの売上ではなく、農家さんと生活者がつながる循環を一緒に育てる「共犯者」をお待ちしています。</p>
+          </div>
+          <a class="button primary js-support-cta" href="#plans">支援プランを選ぶ</a>
         </div>
       </section>
     </main>
+
     <footer class="footer">
       <div class="container footer-inner">
         <div class="footer-brand">
@@ -84,6 +537,67 @@
         </nav>
       </div>
     </footer>
+
     <script src="./assets/crowdfunding-summary.js" defer></script>
+    <script>
+      (function () {
+        // ============================================
+        // 支援申込フォームURL（確定したらここに貼るだけ）
+        // 例: "https://airtable.com/xxxxx" や "https://forms.gle/xxxxx"
+        // ============================================
+        var SUPPORT_FORM_URL = "";
+
+        var GOAL_AMOUNT = 150000;
+
+        // 支援CTAボタンの設定
+        document.querySelectorAll(".js-support-cta[data-plan]").forEach(function (btn) {
+          if (SUPPORT_FORM_URL) {
+            var url = SUPPORT_FORM_URL;
+            var plan = btn.getAttribute("data-plan");
+            // フォームがプレフィル用クエリに対応している場合に付与
+            url += (url.indexOf("?") === -1 ? "?" : "&") + "prefill_プラン=" + encodeURIComponent(plan);
+            btn.href = url;
+            btn.target = "_blank";
+            btn.rel = "noopener noreferrer";
+          } else {
+            btn.textContent = "支援受付は近日開始します";
+            btn.classList.add("cta-disabled");
+            btn.setAttribute("aria-disabled", "true");
+            btn.removeAttribute("href");
+          }
+        });
+
+        // 進捗バー・残数の表示
+        fetch("/api/crowdfunding-summary")
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            var pct = Math.min(100, Math.round(((data.totalAmount || 0) / GOAL_AMOUNT) * 100));
+            var fill = document.querySelector("[data-progress-fill]");
+            var pctLabel = document.querySelector("[data-progress-percent]");
+            var track = document.querySelector(".progress-track");
+            if (fill) fill.style.width = pct + "%";
+            if (pctLabel) pctLabel.textContent = pct + "%";
+            if (track) track.setAttribute("aria-valuenow", String(pct));
+
+            // リターン別の残数（Airtableのリターン名と一致させること）
+            var breakdown = data.returnBreakdown || {};
+            document.querySelectorAll("[data-return-name]").forEach(function (el) {
+              var name = el.getAttribute("data-return-name");
+              var capacity = parseInt(el.getAttribute("data-capacity"), 10);
+              if (!capacity) { el.textContent = ""; return; }
+              var used = breakdown[name] || 0;
+              var left = Math.max(0, capacity - used);
+              el.innerHTML = left > 0
+                ? "残り <strong>" + left + "名</strong>"
+                : "<strong>満枠御礼</strong>";
+            });
+          })
+          .catch(function () {
+            document.querySelectorAll("[data-return-name]").forEach(function (el) {
+              el.textContent = "";
+            });
+          });
+      })();
+    </script>
   </body>
 </html>
