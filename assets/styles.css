@@ -447,6 +447,70 @@ h1 {
   line-height: 1.75;
 }
 
+.return-overview {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.94fr) minmax(260px, 0.72fr);
+  gap: 30px;
+  align-items: center;
+  margin-bottom: 34px;
+}
+
+.return-chart-board {
+  position: relative;
+  margin: 0;
+  padding: 10px;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 6px 9px 0 rgba(74, 56, 38, 0.14), 0 12px 32px rgba(74, 56, 38, 0.12);
+  transform: rotate(-0.4deg);
+}
+
+.return-chart-board::before {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  width: 118px;
+  height: 26px;
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.28) 0 7px, transparent 7px 14px),
+    rgba(233, 169, 61, 0.85);
+  transform: translateX(-50%) rotate(2deg);
+  clip-path: polygon(2% 0%, 98% 6%, 100% 40%, 98% 100%, 2% 94%, 0% 52%);
+  box-shadow: 0 1px 4px rgba(74, 56, 38, 0.22);
+}
+
+.return-chart-board img {
+  display: block;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.return-legend {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.return-legend li {
+  padding: 9px 11px;
+  border: 1.5px dashed rgba(74, 56, 38, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 250, 240, 0.68);
+  color: #5f5548;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.return-legend strong {
+  color: var(--tomato);
+  font-family: var(--font-display);
+}
+
 .grid.three.plans {
   align-items: stretch;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1287,6 +1351,7 @@ h1 {
   .section-header,
   .split,
   .support-hero-grid,
+  .return-overview,
   .grid.two,
   .grid.three,
   .benefit-grid {
@@ -1334,6 +1399,7 @@ h1 {
   }
 
   .kv-board,
+  .return-chart-board,
   .image-board {
     transform: rotate(-0.3deg);
   }
@@ -1379,8 +1445,18 @@ h1 {
   }
 
   .kv-board,
+  .return-chart-board,
   .image-board {
     padding: 8px;
+  }
+
+  .return-overview {
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+
+  .return-legend {
+    grid-template-columns: 1fr;
   }
 
   .grid .card,
