@@ -41,8 +41,9 @@ body {
   background-color: var(--kraft);
   background-image: var(--grain);
   font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", system-ui, sans-serif;
-  line-height: 1.8;
-  letter-spacing: 0.01em;
+  line-height: 1.9;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
 }
 
 img {
@@ -192,7 +193,7 @@ a {
   font-family: var(--font-hand);
   font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0;
 }
 
 h1,
@@ -214,7 +215,7 @@ h1 {
   margin-bottom: 18px;
   font-size: clamp(34px, 6.4vw, 66px);
   line-height: 1.18;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   text-shadow: 0 3px 14px rgba(30, 22, 10, 0.4);
 }
 
@@ -257,7 +258,8 @@ h1 {
 }
 
 .support-hero-copy p {
-  color: var(--muted);
+  color: #5f5548;
+  line-height: 1.95;
 }
 
 .kv-board,
@@ -299,6 +301,10 @@ h1 {
 .image-board img {
   width: 100%;
   border-radius: 3px;
+}
+
+.kv-board picture {
+  display: block;
 }
 
 .kv-board img {
@@ -385,17 +391,20 @@ h1 {
   margin-top: 10px;
   color: var(--muted);
   font-size: 14px;
+  line-height: 1.65;
 }
 
 .info-table,
 .legal-table {
   width: 100%;
   border: 2px solid var(--line);
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   background: var(--cream);
   background-image: var(--grain);
   box-shadow: var(--shadow);
   font-size: 15px;
+  line-height: 1.85;
 }
 
 .info-table th,
@@ -403,7 +412,7 @@ h1 {
 .legal-table th,
 .legal-table td {
   border: 1px solid var(--line);
-  padding: 12px 14px;
+  padding: 18px 20px;
   text-align: left;
   vertical-align: top;
 }
@@ -414,30 +423,48 @@ h1 {
   background: var(--kraft-deep);
   color: var(--soil);
   font-family: var(--font-display);
+  line-height: 1.55;
   white-space: nowrap;
+}
+
+.info-table:has(thead) th {
+  width: auto;
+}
+
+.info-table:has(thead) th:first-child {
+  width: 13em;
+}
+
+.info-table:has(thead) th:nth-child(2) {
+  width: 9em;
 }
 
 .info-table td .sub {
   display: block;
+  margin-top: 6px;
   color: var(--muted);
   font-size: 13px;
+  line-height: 1.75;
 }
 
-.plans {
+.grid.three.plans {
   align-items: stretch;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
 }
 
 .plan-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   min-height: 100%;
-  padding: 24px 22px;
+  padding: 30px 28px;
   border: 2px solid var(--line);
   border-radius: var(--radius);
   background: var(--cream);
   background-image: var(--grain);
   box-shadow: var(--shadow);
+  line-height: 1.8;
 }
 
 .plan-card.sponsor {
@@ -470,29 +497,51 @@ h1 {
 
 .plan-list {
   margin: 0;
-  padding-left: 1.2em;
+  padding-left: 1.3em;
 }
 
 .plan-list li {
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  padding-left: 2px;
 }
 
 .plan-fit {
   margin-top: auto;
-  padding-top: 10px;
+  padding-top: 14px;
   border-top: 1.5px dashed var(--line);
   color: var(--leaf-dark);
-  font-family: var(--font-hand);
+  font-family: var(--font-display);
   font-size: 15px;
+  line-height: 1.8;
 }
 
 .plan-slots {
-  color: var(--muted);
-  font-size: 13px;
+  margin: 0;
+  color: #655848;
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 .plan-slots strong {
   color: var(--tomato);
+}
+
+.payment-pill {
+  border-color: rgba(201, 81, 47, 0.5);
+  background: rgba(255, 238, 220, 0.85);
+  color: var(--tomato);
+}
+
+.plan-payment {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1.5px dashed rgba(201, 81, 47, 0.42);
+  border-radius: 8px;
+  background: rgba(255, 246, 230, 0.85);
+  color: #6f4a25;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.7;
 }
 
 .plan-card .button {
@@ -511,9 +560,10 @@ h1 {
 /* ---------- 法務ページ ---------- */
 
 .legal {
-  width: min(860px, calc(100% - 32px));
+  width: min(920px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 48px 0 72px;
+  padding: 58px 0 80px;
+  line-height: 1.95;
 }
 
 .legal h1 {
@@ -526,6 +576,7 @@ h1 {
   margin-bottom: 32px;
   color: var(--muted);
   font-size: 14px;
+  line-height: 1.6;
 }
 
 .legal section {
@@ -533,7 +584,7 @@ h1 {
 }
 
 .legal h2 {
-  margin: 40px 0 16px;
+  margin: 48px 0 18px;
   padding-bottom: 8px;
   border-bottom: 2px dashed var(--line);
   color: var(--soil);
@@ -541,7 +592,7 @@ h1 {
 }
 
 .legal h3 {
-  margin: 26px 0 8px;
+  margin: 30px 0 10px;
   color: var(--leaf-dark);
   font-size: 17px;
 }
@@ -552,22 +603,24 @@ h1 {
 }
 
 .legal li {
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
 .legal .toc {
-  padding: 20px 24px;
+  padding: 24px 28px;
   border: 2px solid var(--line);
   border-radius: var(--radius);
   background: var(--cream);
   background-image: var(--grain);
   box-shadow: var(--shadow);
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1.85;
 }
 
 .legal .toc ul {
   columns: 2;
-  margin: 8px 0 0;
+  column-gap: 42px;
+  margin: 12px 0 0;
 }
 
 .legal-actions {
@@ -659,9 +712,9 @@ h1 {
 .section-header {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
-  gap: 36px;
+  gap: 44px;
   align-items: start;
-  margin-bottom: 38px;
+  margin-bottom: 44px;
 }
 
 .section-header h2 {
@@ -684,7 +737,8 @@ h1 {
 }
 
 .section-header p {
-  color: var(--muted);
+  color: #5f5548;
+  line-height: 1.9;
 }
 
 .grid {
@@ -789,7 +843,8 @@ h1 {
 .page-tile p,
 .role-card p,
 .step p {
-  color: var(--muted);
+  color: #62584c;
+  line-height: 1.85;
 }
 
 /* ---------- ステータス（マスキングテープ風ラベル） ---------- */
@@ -1208,6 +1263,17 @@ h1 {
 /* ---------- レスポンシブ ---------- */
 
 @media (max-width: 860px) {
+  .hero.funding-hero::before {
+    background-image: url("./cafe-metagri-funding-kv-sp.png");
+    background-position: center top;
+  }
+
+  .hero.funding-hero::after {
+    background:
+      linear-gradient(0deg, rgba(40, 30, 16, 0.94), rgba(40, 30, 16, 0.24) 58%, rgba(40, 30, 16, 0.08)),
+      linear-gradient(90deg, rgba(45, 33, 18, 0.62), rgba(45, 33, 18, 0.14));
+  }
+
   .nav {
     align-items: flex-start;
     flex-direction: column;
@@ -1224,6 +1290,10 @@ h1 {
   .grid.two,
   .grid.three,
   .benefit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid.three.plans {
     grid-template-columns: 1fr;
   }
 
@@ -1266,6 +1336,10 @@ h1 {
   .kv-board,
   .image-board {
     transform: rotate(-0.3deg);
+  }
+
+  .kv-board img {
+    aspect-ratio: 564 / 1003;
   }
 
   .info-table th,
@@ -1334,12 +1408,62 @@ h1 {
   .info-table,
   .legal-table {
     font-size: 14px;
+    border-collapse: separate;
+  }
+
+  .info-table thead,
+  .legal-table thead {
+    display: none;
+  }
+
+  .info-table tbody,
+  .info-table tr,
+  .info-table th,
+  .info-table td,
+  .legal-table tbody,
+  .legal-table tr,
+  .legal-table th,
+  .legal-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .info-table tr,
+  .legal-table tr {
+    border-bottom: 1.5px solid var(--line);
+  }
+
+  .info-table th,
+  .legal-table th {
+    border-bottom: 0;
+    white-space: normal;
+  }
+
+  .info-table td,
+  .legal-table td {
+    border-top: 0;
   }
 
   .info-table th,
   .info-table td,
   .legal-table th,
   .legal-table td {
-    padding: 10px;
+    padding: 12px 14px;
+  }
+
+  .plan-card {
+    padding: 24px 20px;
+  }
+
+  .plan-price {
+    font-size: 24px;
+  }
+
+  .legal {
+    padding-top: 42px;
+  }
+
+  .legal .toc {
+    padding: 20px;
   }
 }

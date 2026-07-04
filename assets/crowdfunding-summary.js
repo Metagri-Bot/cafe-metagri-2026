@@ -3,6 +3,14 @@
   const supportFormUrl = document.querySelector("[data-support-form-url]")?.getAttribute("data-support-form-url") || "";
 
   document.querySelectorAll(".js-support-cta[data-plan]").forEach((button) => {
+    const buttonFormUrl = button.getAttribute("data-form-url") || "";
+    if (buttonFormUrl) {
+      button.href = buttonFormUrl;
+      button.target = "_blank";
+      button.rel = "noopener noreferrer";
+      return;
+    }
+
     if (supportFormUrl) {
       const url = new URL(supportFormUrl, window.location.href);
       url.searchParams.set("prefill_プラン", button.getAttribute("data-plan"));
