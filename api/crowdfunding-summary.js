@@ -11,6 +11,9 @@ function json(statusCode, payload) {
 
 function numberFromValue(value) {
   if (typeof value === "number") return value;
+  if (Array.isArray(value)) {
+    return value.reduce((sum, item) => sum + numberFromValue(item), 0);
+  }
   if (typeof value === "string") {
     const parsed = Number(value.normalize("NFKC").replace(/[^\d.-]/g, ""));
     return Number.isFinite(parsed) ? parsed : 0;
@@ -29,6 +32,37 @@ function fieldValue(fields, fieldNames) {
     }
   }
   return undefined;
+}
+
+function amountFromPlan(value) {
+  const text = Array.isArray(value) ? value.join(" ") : String(value || "");
+  const parsed = numberFromValue(text);
+  if (parsed > 0) return parsed;
+
+  const planAmounts = [
+    ["ちょい応援プラン", 1000],
+    ["応援コメント掲載プラン", 3000],
+    ["カフェ参加プラン", 6000],
+    ["共創参加プラン", 10000],
+    ["ライトスポンサー", 30000],
+  ];
+  const match = planAmounts.find(([planName]) => text.includes(planName));
+  return match ? match[1] : 0;
+}
+
+function amountFromRecord(record, config) {
+  const fields = record.fields || {};
+  const amountFieldNames = uniqueValues([
+    ...config.amountFields,
+    ...Object.keys(fields).filter((fieldName) => fieldName.includes("金額")),
+  ]);
+
+  for (const fieldName of amountFieldNames) {
+    const amount = numberFromValue(fields[fieldName]);
+    if (amount > 0) return amount;
+  }
+
+  return amountFromPlan(fieldValue(fields, config.returnFields));
 }
 
 function getConfig() {
@@ -88,7 +122,7 @@ function summarize(records, config) {
   });
 
   const totalAmount = confirmed.reduce((sum, record) => {
-    return sum + numberFromValue(fieldValue(record.fields || {}, config.amountFields));
+    return sum + amountFromRecord(record, config);
   }, 0);
 
   const returns = {};
