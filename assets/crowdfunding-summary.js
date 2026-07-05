@@ -35,6 +35,8 @@
   const progressPercent = root.querySelector("[data-progress-percent]");
   const progressTrack = root.querySelector(".progress-track");
   const goalAmount = Number(root.getAttribute("data-goal-amount")) || 0;
+  const deadline = new Date(root.getAttribute("data-campaign-deadline") || "");
+  const countdownRemaining = root.querySelector("[data-countdown-remaining]");
 
   function updateProgress(data) {
     if (!goalAmount) return;
@@ -61,6 +63,30 @@
         : "<strong>満枠御礼</strong>";
     });
   }
+
+  function updateCountdown() {
+    if (!countdownRemaining || Number.isNaN(deadline.getTime())) return;
+
+    const remainingMs = deadline.getTime() - Date.now();
+    if (remainingMs <= 0) {
+      countdownRemaining.textContent = "受付終了";
+      countdownRemaining.classList.add("is-ended");
+      return;
+    }
+
+    const totalMinutes = Math.ceil(remainingMs / 60000);
+    const days = Math.floor(totalMinutes / 1440);
+    const hours = Math.floor((totalMinutes % 1440) / 60);
+    const minutes = totalMinutes % 60;
+
+    countdownRemaining.textContent = days > 0
+      ? `${days}日 ${hours}時間`
+      : `${hours}時間 ${minutes}分`;
+    countdownRemaining.classList.remove("is-ended");
+  }
+
+  updateCountdown();
+  window.setInterval(updateCountdown, 60000);
 
   try {
     const response = await fetch("/api/crowdfunding-summary");
