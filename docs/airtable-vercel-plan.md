@@ -25,9 +25,9 @@
 | 用途 | 環境変数 | 既定値 |
 |---|---|---|
 | 支援金額 | `AIRTABLE_AMOUNT_FIELD` | `支援金額` |
-| ステータス | `AIRTABLE_STATUS_FIELD` | `ステータス` |
+| ステータス | `AIRTABLE_STATUS_FIELD` | `申込ステータス` |
 | 集計対象ステータス | `AIRTABLE_CONFIRMED_STATUS` | `支援確定` |
-| リターン名 | `AIRTABLE_RETURN_FIELD` | `リターン` |
+| リターン名 | `AIRTABLE_RETURN_FIELD` | `支援プラン` |
 
 ## Vercelに設定する必須環境変数
 
@@ -59,7 +59,7 @@ AIRTABLE_VIEW_ID=viwLq1zNN8QJzVhoG
 
 集計仕様:
 
-- `ステータス` が `支援確定` のレコードだけを対象にする
+- `申込ステータス` が `支援確定` のレコードだけを対象にする
 - 対象レコードの `支援金額` を合算する
 - 対象レコード数を支援者数として表示する
 

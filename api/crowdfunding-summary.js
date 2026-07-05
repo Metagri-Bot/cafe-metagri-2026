@@ -12,10 +12,23 @@ function json(statusCode, payload) {
 function numberFromValue(value) {
   if (typeof value === "number") return value;
   if (typeof value === "string") {
-    const parsed = Number(value.replace(/[^\d.-]/g, ""));
+    const parsed = Number(value.normalize("NFKC").replace(/[^\d.-]/g, ""));
     return Number.isFinite(parsed) ? parsed : 0;
   }
   return 0;
+}
+
+function uniqueValues(values) {
+  return [...new Set(values.filter(Boolean))];
+}
+
+function fieldValue(fields, fieldNames) {
+  for (const fieldName of fieldNames) {
+    if (Object.prototype.hasOwnProperty.call(fields, fieldName)) {
+      return fields[fieldName];
+    }
+  }
+  return undefined;
 }
 
 function getConfig() {
@@ -30,10 +43,10 @@ function getConfig() {
       process.env.AIRTABLE_VIEW_ID ||
       process.env.AIRTABLE_VIEW_NAME ||
       "viwLq1zNN8QJzVhoG",
-    amountField: process.env.AIRTABLE_AMOUNT_FIELD || "支援金額",
-    statusField: process.env.AIRTABLE_STATUS_FIELD || "ステータス",
+    amountFields: uniqueValues([process.env.AIRTABLE_AMOUNT_FIELD, "支援金額", "金額"]),
+    statusFields: uniqueValues([process.env.AIRTABLE_STATUS_FIELD, "申込ステータス", "ステータス"]),
     confirmedStatus: process.env.AIRTABLE_CONFIRMED_STATUS || "支援確定",
-    returnField: process.env.AIRTABLE_RETURN_FIELD || "リターン",
+    returnFields: uniqueValues([process.env.AIRTABLE_RETURN_FIELD, "支援プラン", "リターン"]),
   };
 }
 
@@ -68,19 +81,19 @@ async function fetchAirtableRecords(config) {
 
 function summarize(records, config) {
   const confirmed = records.filter((record) => {
-    const value = record.fields?.[config.statusField];
-    if (!config.statusField || !config.confirmedStatus) return true;
+    const value = fieldValue(record.fields || {}, config.statusFields);
+    if (!config.statusFields.length || !config.confirmedStatus) return true;
     if (Array.isArray(value)) return value.includes(config.confirmedStatus);
     return String(value || "").trim() === config.confirmedStatus;
   });
 
   const totalAmount = confirmed.reduce((sum, record) => {
-    return sum + numberFromValue(record.fields?.[config.amountField]);
+    return sum + numberFromValue(fieldValue(record.fields || {}, config.amountFields));
   }, 0);
 
   const returns = {};
   for (const record of confirmed) {
-    const value = record.fields?.[config.returnField] || "未分類";
+    const value = fieldValue(record.fields || {}, config.returnFields) || "未分類";
     const key = Array.isArray(value) ? value.join(", ") : String(value);
     returns[key] = (returns[key] || 0) + 1;
   }
