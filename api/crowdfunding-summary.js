@@ -11,23 +11,76 @@ function json(statusCode, payload) {
 
 function numberFromValue(value) {
   if (typeof value === "number") return value;
+  if (Array.isArray(value)) {
+    return value.reduce((sum, item) => sum + numberFromValue(item), 0);
+  }
   if (typeof value === "string") {
-    const parsed = Number(value.replace(/[^\d.-]/g, ""));
+    const parsed = Number(value.normalize("NFKC").replace(/[^\d.-]/g, ""));
     return Number.isFinite(parsed) ? parsed : 0;
   }
   return 0;
 }
 
+function uniqueValues(values) {
+  return [...new Set(values.filter(Boolean))];
+}
+
+function fieldValue(fields, fieldNames) {
+  for (const fieldName of fieldNames) {
+    if (Object.prototype.hasOwnProperty.call(fields, fieldName)) {
+      return fields[fieldName];
+    }
+  }
+  return undefined;
+}
+
+function amountFromPlan(value) {
+  const text = Array.isArray(value) ? value.join(" ") : String(value || "");
+  const parsed = numberFromValue(text);
+  if (parsed > 0) return parsed;
+
+  const planAmounts = [
+    ["ちょい応援プラン", 1000],
+    ["応援コメント掲載プラン", 3000],
+    ["カフェ参加プラン", 6000],
+    ["共創参加プラン", 10000],
+    ["ライトスポンサー", 30000],
+  ];
+  const match = planAmounts.find(([planName]) => text.includes(planName));
+  return match ? match[1] : 0;
+}
+
+function amountFromRecord(record, config) {
+  const fields = record.fields || {};
+  const amountFieldNames = uniqueValues([
+    ...config.amountFields,
+    ...Object.keys(fields).filter((fieldName) => fieldName.includes("金額")),
+  ]);
+
+  for (const fieldName of amountFieldNames) {
+    const amount = numberFromValue(fields[fieldName]);
+    if (amount > 0) return amount;
+  }
+
+  return amountFromPlan(fieldValue(fields, config.returnFields));
+}
+
 function getConfig() {
   return {
     token: process.env.AIRTABLE_TOKEN,
-    baseId: process.env.AIRTABLE_BASE_ID,
-    tableName: process.env.AIRTABLE_TABLE_NAME,
-    viewName: process.env.AIRTABLE_VIEW_NAME,
-    amountField: process.env.AIRTABLE_AMOUNT_FIELD || "支援金額",
-    statusField: process.env.AIRTABLE_STATUS_FIELD || "ステータス",
-    confirmedStatus: process.env.AIRTABLE_CONFIRMED_STATUS || "入金済み",
-    returnField: process.env.AIRTABLE_RETURN_FIELD || "リターン",
+    baseId: process.env.AIRTABLE_BASE_ID || "appeC3wuX1TgSbeIJ",
+    tableIdOrName:
+      process.env.AIRTABLE_TABLE_ID ||
+      process.env.AIRTABLE_TABLE_NAME ||
+      "tbldzMcpUicXBxhrV",
+    viewIdOrName:
+      process.env.AIRTABLE_VIEW_ID ||
+      process.env.AIRTABLE_VIEW_NAME ||
+      "viwLq1zNN8QJzVhoG",
+    amountFields: uniqueValues([process.env.AIRTABLE_AMOUNT_FIELD, "支援金額", "金額"]),
+    statusFields: uniqueValues([process.env.AIRTABLE_STATUS_FIELD, "申込ステータス", "ステータス"]),
+    confirmedStatus: process.env.AIRTABLE_CONFIRMED_STATUS || "支援確定",
+    returnFields: uniqueValues([process.env.AIRTABLE_RETURN_FIELD, "支援プラン", "リターン"]),
   };
 }
 
@@ -36,9 +89,9 @@ async function fetchAirtableRecords(config) {
   let offset;
 
   do {
-    const url = new URL(`${AIRTABLE_API_BASE}/${config.baseId}/${encodeURIComponent(config.tableName)}`);
+    const url = new URL(`${AIRTABLE_API_BASE}/${config.baseId}/${encodeURIComponent(config.tableIdOrName)}`);
     url.searchParams.set("pageSize", "100");
-    if (config.viewName) url.searchParams.set("view", config.viewName);
+    if (config.viewIdOrName) url.searchParams.set("view", config.viewIdOrName);
     if (offset) url.searchParams.set("offset", offset);
 
     const response = await fetch(url, {
@@ -62,19 +115,19 @@ async function fetchAirtableRecords(config) {
 
 function summarize(records, config) {
   const confirmed = records.filter((record) => {
-    const value = record.fields?.[config.statusField];
-    if (!config.statusField || !config.confirmedStatus) return true;
+    const value = fieldValue(record.fields || {}, config.statusFields);
+    if (!config.statusFields.length || !config.confirmedStatus) return true;
     if (Array.isArray(value)) return value.includes(config.confirmedStatus);
-    return value === config.confirmedStatus;
+    return String(value || "").trim() === config.confirmedStatus;
   });
 
   const totalAmount = confirmed.reduce((sum, record) => {
-    return sum + numberFromValue(record.fields?.[config.amountField]);
+    return sum + amountFromRecord(record, config);
   }, 0);
 
   const returns = {};
   for (const record of confirmed) {
-    const value = record.fields?.[config.returnField] || "未分類";
+    const value = fieldValue(record.fields || {}, config.returnFields) || "未分類";
     const key = Array.isArray(value) ? value.join(", ") : String(value);
     returns[key] = (returns[key] || 0) + 1;
   }
@@ -91,7 +144,7 @@ function summarize(records, config) {
 
 export async function GET() {
   const config = getConfig();
-  const required = ["token", "baseId", "tableName"].filter((key) => !config[key]);
+  const required = ["token", "baseId", "tableIdOrName"].filter((key) => !config[key]);
 
   if (required.length > 0) {
     return json(200, {

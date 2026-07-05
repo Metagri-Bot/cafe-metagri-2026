@@ -41,8 +41,9 @@ body {
   background-color: var(--kraft);
   background-image: var(--grain);
   font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", system-ui, sans-serif;
-  line-height: 1.8;
-  letter-spacing: 0.01em;
+  line-height: 1.9;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
 }
 
 img {
@@ -152,6 +153,11 @@ a {
   transform: scale(1.02);
 }
 
+.hero.funding-hero::before {
+  background-image: url("./cafe-metagri-funding-kv.png");
+  background-position: center;
+}
+
 .hero::after {
   content: "";
   position: absolute;
@@ -187,7 +193,7 @@ a {
   font-family: var(--font-hand);
   font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0;
 }
 
 h1,
@@ -209,7 +215,7 @@ h1 {
   margin-bottom: 18px;
   font-size: clamp(34px, 6.4vw, 66px);
   line-height: 1.18;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   text-shadow: 0 3px 14px rgba(30, 22, 10, 0.4);
 }
 
@@ -226,6 +232,463 @@ h1 {
   flex-wrap: wrap;
   gap: 14px;
   align-items: center;
+}
+
+/* ---------- クラファン企画ページ ---------- */
+
+.support-hero {
+  padding: 64px 0 72px;
+  background-color: var(--kraft-deep);
+  background-image: var(--grain);
+  border-bottom: 2px dashed rgba(74, 56, 38, 0.25);
+}
+
+.support-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(360px, 1.12fr);
+  gap: 38px;
+  align-items: center;
+}
+
+.support-hero-copy h1 {
+  color: var(--soil);
+  font-size: clamp(30px, 4.2vw, 44px);
+  line-height: 1.24;
+  text-shadow: none;
+}
+
+.support-hero-copy p {
+  color: #5f5548;
+  line-height: 1.95;
+}
+
+.kv-board,
+.image-board {
+  position: relative;
+  margin: 0;
+  padding: 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 6px 9px 0 rgba(74, 56, 38, 0.14), 0 12px 32px rgba(74, 56, 38, 0.12);
+}
+
+.kv-board {
+  transform: rotate(0.8deg);
+}
+
+.image-board {
+  transform: rotate(-0.7deg);
+}
+
+.kv-board::before,
+.image-board::before {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  width: 120px;
+  height: 26px;
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.28) 0 7px, transparent 7px 14px),
+    rgba(233, 169, 61, 0.85);
+  transform: translateX(-50%) rotate(2deg);
+  clip-path: polygon(2% 0%, 98% 6%, 100% 40%, 98% 100%, 2% 94%, 0% 52%);
+  box-shadow: 0 1px 4px rgba(74, 56, 38, 0.22);
+}
+
+.kv-board img,
+.image-board img {
+  width: 100%;
+  border-radius: 3px;
+}
+
+.kv-board picture {
+  display: block;
+}
+
+.kv-board img {
+  aspect-ratio: 1003 / 564;
+  object-fit: cover;
+}
+
+.image-board.tall {
+  width: min(520px, 100%);
+  justify-self: center;
+}
+
+.visual-split {
+  align-items: center;
+}
+
+.funding-summary h2 {
+  color: var(--soil);
+  font-size: 24px;
+  text-shadow: none;
+}
+
+.funding-summary strong {
+  color: var(--tomato);
+  font-family: var(--font-display);
+  font-size: 28px;
+}
+
+.return-grid .benefit-card {
+  min-height: 210px;
+}
+
+.progress-panel {
+  padding: 28px 26px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  background-image: var(--grain);
+  box-shadow: var(--shadow);
+}
+
+.progress-figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 36px;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.progress-figures .amount {
+  color: var(--leaf-dark);
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.progress-figures .label {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.progress-track {
+  height: 18px;
+  overflow: hidden;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: var(--kraft-deep);
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--leaf), var(--sun));
+  transition: width 900ms ease;
+}
+
+.progress-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 18px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.info-table,
+.legal-table {
+  width: 100%;
+  border: 2px solid var(--line);
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--cream);
+  background-image: var(--grain);
+  box-shadow: var(--shadow);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.info-table th,
+.info-table td,
+.legal-table th,
+.legal-table td {
+  border: 1px solid var(--line);
+  padding: 18px 20px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.info-table th,
+.legal-table th {
+  width: 12em;
+  background: var(--kraft-deep);
+  color: var(--soil);
+  font-family: var(--font-display);
+  line-height: 1.55;
+  white-space: nowrap;
+}
+
+.info-table:has(thead) th {
+  width: auto;
+}
+
+.info-table:has(thead) th:first-child {
+  width: 13em;
+}
+
+.info-table:has(thead) th:nth-child(2) {
+  width: 9em;
+}
+
+.info-table td .sub {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.return-overview {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.94fr) minmax(260px, 0.72fr);
+  gap: 30px;
+  align-items: center;
+  margin-bottom: 34px;
+}
+
+.return-chart-board {
+  position: relative;
+  margin: 0;
+  padding: 10px;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 6px 9px 0 rgba(74, 56, 38, 0.14), 0 12px 32px rgba(74, 56, 38, 0.12);
+  transform: rotate(-0.4deg);
+}
+
+.return-chart-board::before {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  width: 118px;
+  height: 26px;
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.28) 0 7px, transparent 7px 14px),
+    rgba(233, 169, 61, 0.85);
+  transform: translateX(-50%) rotate(2deg);
+  clip-path: polygon(2% 0%, 98% 6%, 100% 40%, 98% 100%, 2% 94%, 0% 52%);
+  box-shadow: 0 1px 4px rgba(74, 56, 38, 0.22);
+}
+
+.return-chart-board img {
+  display: block;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.return-legend {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.return-legend li {
+  padding: 9px 11px;
+  border: 1.5px dashed rgba(74, 56, 38, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 250, 240, 0.68);
+  color: #5f5548;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.return-legend strong {
+  color: var(--tomato);
+  font-family: var(--font-display);
+}
+
+.grid.three.plans {
+  align-items: stretch;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 100%;
+  padding: 30px 28px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  background-image: var(--grain);
+  box-shadow: var(--shadow);
+  line-height: 1.8;
+}
+
+.plan-card.sponsor {
+  border-color: var(--sun);
+  background:
+    linear-gradient(180deg, rgba(255, 248, 232, 0.9), rgba(255, 250, 240, 0.95)),
+    var(--grain);
+}
+
+.plan-price {
+  color: var(--tomato);
+  font-family: var(--font-display);
+  font-size: 27px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.plan-price small {
+  margin-left: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.plan-name {
+  margin: 0;
+  color: var(--soil);
+  font-size: 19px;
+}
+
+.plan-list {
+  margin: 0;
+  padding-left: 1.3em;
+}
+
+.plan-list li {
+  margin-bottom: 8px;
+  padding-left: 2px;
+}
+
+.plan-fit {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1.5px dashed var(--line);
+  color: var(--leaf-dark);
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.plan-slots {
+  margin: 0;
+  color: #655848;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.plan-slots strong {
+  color: var(--tomato);
+}
+
+.payment-pill {
+  border-color: rgba(201, 81, 47, 0.5);
+  background: rgba(255, 238, 220, 0.85);
+  color: var(--tomato);
+}
+
+.plan-payment {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1.5px dashed rgba(201, 81, 47, 0.42);
+  border-radius: 8px;
+  background: rgba(255, 246, 230, 0.85);
+  color: #6f4a25;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.plan-card .button {
+  text-align: center;
+}
+
+.cta-disabled {
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.split .step-list.compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* ---------- 法務ページ ---------- */
+
+.legal {
+  width: min(920px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 58px 0 80px;
+  line-height: 1.95;
+}
+
+.legal h1 {
+  color: var(--soil);
+  font-size: clamp(26px, 3.6vw, 36px);
+  text-shadow: none;
+}
+
+.legal .updated {
+  margin-bottom: 32px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.legal section {
+  margin-bottom: 40px;
+}
+
+.legal h2 {
+  margin: 48px 0 18px;
+  padding-bottom: 8px;
+  border-bottom: 2px dashed var(--line);
+  color: var(--soil);
+  font-size: 22px;
+}
+
+.legal h3 {
+  margin: 30px 0 10px;
+  color: var(--leaf-dark);
+  font-size: 17px;
+}
+
+.legal ol,
+.legal ul {
+  padding-left: 1.4em;
+}
+
+.legal li {
+  margin-bottom: 10px;
+}
+
+.legal .toc {
+  padding: 24px 28px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  background-image: var(--grain);
+  box-shadow: var(--shadow);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.legal .toc ul {
+  columns: 2;
+  column-gap: 42px;
+  margin: 12px 0 0;
+}
+
+.legal-actions {
+  margin-top: 40px;
 }
 
 /* ---------- ボタン（スタンプ・活版風） ---------- */
@@ -313,9 +776,9 @@ h1 {
 .section-header {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
-  gap: 36px;
+  gap: 44px;
   align-items: start;
-  margin-bottom: 38px;
+  margin-bottom: 44px;
 }
 
 .section-header h2 {
@@ -338,7 +801,8 @@ h1 {
 }
 
 .section-header p {
-  color: var(--muted);
+  color: #5f5548;
+  line-height: 1.9;
 }
 
 .grid {
@@ -443,7 +907,8 @@ h1 {
 .page-tile p,
 .role-card p,
 .step p {
-  color: var(--muted);
+  color: #62584c;
+  line-height: 1.85;
 }
 
 /* ---------- ステータス（マスキングテープ風ラベル） ---------- */
@@ -862,6 +1327,17 @@ h1 {
 /* ---------- レスポンシブ ---------- */
 
 @media (max-width: 860px) {
+  .hero.funding-hero::before {
+    background-image: url("./cafe-metagri-funding-kv-sp.png");
+    background-position: center top;
+  }
+
+  .hero.funding-hero::after {
+    background:
+      linear-gradient(0deg, rgba(40, 30, 16, 0.94), rgba(40, 30, 16, 0.24) 58%, rgba(40, 30, 16, 0.08)),
+      linear-gradient(90deg, rgba(45, 33, 18, 0.62), rgba(45, 33, 18, 0.14));
+  }
+
   .nav {
     align-items: flex-start;
     flex-direction: column;
@@ -874,9 +1350,15 @@ h1 {
 
   .section-header,
   .split,
+  .support-hero-grid,
+  .return-overview,
   .grid.two,
   .grid.three,
   .benefit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid.three.plans {
     grid-template-columns: 1fr;
   }
 
@@ -885,6 +1367,10 @@ h1 {
   }
 
   .step-list.compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .split .step-list.compact {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -911,6 +1397,26 @@ h1 {
   .photo-panel {
     transform: rotate(-0.8deg);
   }
+
+  .kv-board,
+  .return-chart-board,
+  .image-board {
+    transform: rotate(-0.3deg);
+  }
+
+  .kv-board img {
+    aspect-ratio: 564 / 1003;
+  }
+
+  .info-table th,
+  .legal-table th {
+    width: 9em;
+    white-space: normal;
+  }
+
+  .legal .toc ul {
+    columns: 1;
+  }
 }
 
 @media (max-width: 560px) {
@@ -930,6 +1436,29 @@ h1 {
     padding: 52px 0;
   }
 
+  .support-hero {
+    padding: 42px 0 52px;
+  }
+
+  .support-hero-copy h1 {
+    font-size: 30px;
+  }
+
+  .kv-board,
+  .return-chart-board,
+  .image-board {
+    padding: 8px;
+  }
+
+  .return-overview {
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+
+  .return-legend {
+    grid-template-columns: 1fr;
+  }
+
   .grid .card,
   .step,
   .discord-panel {
@@ -939,4 +1468,186 @@ h1 {
   .step-list.compact {
     grid-template-columns: 1fr;
   }
+
+  .split .step-list.compact {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-figures {
+    gap: 14px;
+  }
+
+  .progress-meta {
+    flex-direction: column;
+  }
+
+  .info-table,
+  .legal-table {
+    font-size: 14px;
+    border-collapse: separate;
+  }
+
+  .info-table thead,
+  .legal-table thead {
+    display: none;
+  }
+
+  .info-table tbody,
+  .info-table tr,
+  .info-table th,
+  .info-table td,
+  .legal-table tbody,
+  .legal-table tr,
+  .legal-table th,
+  .legal-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .info-table tr,
+  .legal-table tr {
+    border-bottom: 1.5px solid var(--line);
+  }
+
+  .info-table th,
+  .legal-table th {
+    border-bottom: 0;
+    white-space: normal;
+  }
+
+  .info-table td,
+  .legal-table td {
+    border-top: 0;
+  }
+
+  .info-table th,
+  .info-table td,
+  .legal-table th,
+  .legal-table td {
+    padding: 12px 14px;
+  }
+
+  .plan-card {
+    padding: 24px 20px;
+  }
+
+  .plan-price {
+    font-size: 24px;
+  }
+
+  .legal {
+    padding-top: 42px;
+  }
+
+  .legal .toc {
+    padding: 20px;
+  }
+}
+
+/* ---------- 支援者限定 裏側レポート ---------- */
+
+.member-report h1 {
+  color: var(--soil);
+  font-size: clamp(32px, 5.2vw, 56px);
+  text-shadow: none;
+}
+
+.member-gate {
+  min-height: 68vh;
+  display: grid;
+  align-items: center;
+}
+
+.report-frequency {
+  display: inline-flex;
+  margin-top: 8px;
+  padding: 8px 14px;
+  border: 1.5px dashed rgba(44, 94, 60, 0.45);
+  border-radius: 999px;
+  background: rgba(229, 242, 220, 0.78);
+  color: var(--leaf-dark);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.gate-card {
+  padding: 28px 26px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  background-image: var(--grain);
+  box-shadow: var(--shadow);
+}
+
+.gate-card h2 {
+  margin-bottom: 10px;
+  color: var(--soil);
+  font-size: 24px;
+}
+
+.gate-card label {
+  display: block;
+  margin: 18px 0 8px;
+  color: var(--soil);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.gate-card input {
+  width: 100%;
+  min-height: 46px;
+  margin-bottom: 14px;
+  padding: 10px 13px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: #fffaf0;
+  color: var(--soil);
+  font: inherit;
+}
+
+.gate-card .button {
+  width: 100%;
+}
+
+.gate-error {
+  margin: 12px 0 0;
+  color: var(--tomato);
+  font-weight: 700;
+}
+
+.report-update-list {
+  display: grid;
+  gap: 18px;
+}
+
+.report-update {
+  padding: 26px 24px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  background-image: var(--grain);
+  box-shadow: var(--shadow);
+}
+
+.report-update.featured {
+  border-color: var(--sun);
+}
+
+.report-date {
+  margin: 0 0 8px;
+  color: var(--tomato);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.report-update h3 {
+  margin-bottom: 8px;
+  color: var(--leaf-dark);
+  font-size: 21px;
+}
+
+.report-update p,
+.report-update li {
+  color: #62584c;
+  line-height: 1.85;
 }
