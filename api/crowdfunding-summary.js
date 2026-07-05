@@ -21,12 +21,18 @@ function numberFromValue(value) {
 function getConfig() {
   return {
     token: process.env.AIRTABLE_TOKEN,
-    baseId: process.env.AIRTABLE_BASE_ID,
-    tableName: process.env.AIRTABLE_TABLE_NAME,
-    viewName: process.env.AIRTABLE_VIEW_NAME,
+    baseId: process.env.AIRTABLE_BASE_ID || "appeC3wuX1TgSbeIJ",
+    tableIdOrName:
+      process.env.AIRTABLE_TABLE_ID ||
+      process.env.AIRTABLE_TABLE_NAME ||
+      "tbldzMcpUicXBxhrV",
+    viewIdOrName:
+      process.env.AIRTABLE_VIEW_ID ||
+      process.env.AIRTABLE_VIEW_NAME ||
+      "viwLq1zNN8QJzVhoG",
     amountField: process.env.AIRTABLE_AMOUNT_FIELD || "支援金額",
     statusField: process.env.AIRTABLE_STATUS_FIELD || "ステータス",
-    confirmedStatus: process.env.AIRTABLE_CONFIRMED_STATUS || "入金済み",
+    confirmedStatus: process.env.AIRTABLE_CONFIRMED_STATUS || "支援確定",
     returnField: process.env.AIRTABLE_RETURN_FIELD || "リターン",
   };
 }
@@ -36,9 +42,9 @@ async function fetchAirtableRecords(config) {
   let offset;
 
   do {
-    const url = new URL(`${AIRTABLE_API_BASE}/${config.baseId}/${encodeURIComponent(config.tableName)}`);
+    const url = new URL(`${AIRTABLE_API_BASE}/${config.baseId}/${encodeURIComponent(config.tableIdOrName)}`);
     url.searchParams.set("pageSize", "100");
-    if (config.viewName) url.searchParams.set("view", config.viewName);
+    if (config.viewIdOrName) url.searchParams.set("view", config.viewIdOrName);
     if (offset) url.searchParams.set("offset", offset);
 
     const response = await fetch(url, {
@@ -65,7 +71,7 @@ function summarize(records, config) {
     const value = record.fields?.[config.statusField];
     if (!config.statusField || !config.confirmedStatus) return true;
     if (Array.isArray(value)) return value.includes(config.confirmedStatus);
-    return value === config.confirmedStatus;
+    return String(value || "").trim() === config.confirmedStatus;
   });
 
   const totalAmount = confirmed.reduce((sum, record) => {
@@ -91,7 +97,7 @@ function summarize(records, config) {
 
 export async function GET() {
   const config = getConfig();
-  const required = ["token", "baseId", "tableName"].filter((key) => !config[key]);
+  const required = ["token", "baseId", "tableIdOrName"].filter((key) => !config[key]);
 
   if (required.length > 0) {
     return json(200, {

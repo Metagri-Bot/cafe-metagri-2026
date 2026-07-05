@@ -26,7 +26,7 @@
 |---|---|---|
 | 支援金額 | `AIRTABLE_AMOUNT_FIELD` | `支援金額` |
 | ステータス | `AIRTABLE_STATUS_FIELD` | `ステータス` |
-| 集計対象ステータス | `AIRTABLE_CONFIRMED_STATUS` | `入金済み` |
+| 集計対象ステータス | `AIRTABLE_CONFIRMED_STATUS` | `支援確定` |
 | リターン名 | `AIRTABLE_RETURN_FIELD` | `リターン` |
 
 ## Vercelに設定する必須環境変数
@@ -34,18 +34,34 @@
 ```text
 AIRTABLE_TOKEN
 AIRTABLE_BASE_ID
-AIRTABLE_TABLE_NAME
+AIRTABLE_TABLE_ID
 ```
 
 任意:
 
 ```text
+AIRTABLE_TABLE_NAME
+AIRTABLE_VIEW_ID
 AIRTABLE_VIEW_NAME
 AIRTABLE_AMOUNT_FIELD
 AIRTABLE_STATUS_FIELD
 AIRTABLE_CONFIRMED_STATUS
 AIRTABLE_RETURN_FIELD
 ```
+
+現在の申込管理テーブル:
+
+```text
+AIRTABLE_BASE_ID=appeC3wuX1TgSbeIJ
+AIRTABLE_TABLE_ID=tbldzMcpUicXBxhrV
+AIRTABLE_VIEW_ID=viwLq1zNN8QJzVhoG
+```
+
+集計仕様:
+
+- `ステータス` が `支援確定` のレコードだけを対象にする
+- 対象レコードの `支援金額` を合算する
+- 対象レコード数を支援者数として表示する
 
 ## 公開ページへの反映案
 

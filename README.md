@@ -41,4 +41,15 @@ The prepared endpoint is:
 /api/crowdfunding-summary
 ```
 
+Current aggregation target:
+
+```text
+AIRTABLE_BASE_ID=appeC3wuX1TgSbeIJ
+AIRTABLE_TABLE_ID=tbldzMcpUicXBxhrV
+AIRTABLE_VIEW_ID=viwLq1zNN8QJzVhoG
+AIRTABLE_CONFIRMED_STATUS=支援確定
+```
+
+Only records whose `ステータス` is `支援確定` are counted. The endpoint returns the total `支援金額` and the confirmed supporter count.
+
 See [docs/airtable-vercel-plan.md](./docs/airtable-vercel-plan.md) and [.env.example](./.env.example).
