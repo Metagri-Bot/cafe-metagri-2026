@@ -80,8 +80,8 @@
 
     if (status) {
       status.textContent = data.configured
-        ? `Airtableと連動中・最終更新 ${new Date(data.updatedAt).toLocaleString("ja-JP")}`
-        : "Airtable連携は未設定です。環境変数の設定後に自動集計へ切り替わります。";
+        ? `支援状況を更新しました・最終更新 ${new Date(data.updatedAt).toLocaleString("ja-JP")}`
+        : "支援状況は準備中です。入金確認後に順次反映します。";
     }
 
     updateProgress(data);

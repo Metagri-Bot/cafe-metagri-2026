@@ -1543,3 +1543,111 @@ h1 {
     padding: 20px;
   }
 }
+
+/* ---------- 支援者限定 裏側レポート ---------- */
+
+.member-report h1 {
+  color: var(--soil);
+  font-size: clamp(32px, 5.2vw, 56px);
+  text-shadow: none;
+}
+
+.member-gate {
+  min-height: 68vh;
+  display: grid;
+  align-items: center;
+}
+
+.report-frequency {
+  display: inline-flex;
+  margin-top: 8px;
+  padding: 8px 14px;
+  border: 1.5px dashed rgba(44, 94, 60, 0.45);
+  border-radius: 999px;
+  background: rgba(229, 242, 220, 0.78);
+  color: var(--leaf-dark);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.gate-card {
+  padding: 28px 26px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  background-image: var(--grain);
+  box-shadow: var(--shadow);
+}
+
+.gate-card h2 {
+  margin-bottom: 10px;
+  color: var(--soil);
+  font-size: 24px;
+}
+
+.gate-card label {
+  display: block;
+  margin: 18px 0 8px;
+  color: var(--soil);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.gate-card input {
+  width: 100%;
+  min-height: 46px;
+  margin-bottom: 14px;
+  padding: 10px 13px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: #fffaf0;
+  color: var(--soil);
+  font: inherit;
+}
+
+.gate-card .button {
+  width: 100%;
+}
+
+.gate-error {
+  margin: 12px 0 0;
+  color: var(--tomato);
+  font-weight: 700;
+}
+
+.report-update-list {
+  display: grid;
+  gap: 18px;
+}
+
+.report-update {
+  padding: 26px 24px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  background-image: var(--grain);
+  box-shadow: var(--shadow);
+}
+
+.report-update.featured {
+  border-color: var(--sun);
+}
+
+.report-date {
+  margin: 0 0 8px;
+  color: var(--tomato);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.report-update h3 {
+  margin-bottom: 8px;
+  color: var(--leaf-dark);
+  font-size: 21px;
+}
+
+.report-update p,
+.report-update li {
+  color: #62584c;
+  line-height: 1.85;
+}
