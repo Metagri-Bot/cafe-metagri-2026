@@ -44,6 +44,7 @@ function amountFromPlan(value) {
     ["応援コメント掲載プラン", 3000],
     ["カフェ参加プラン", 6000],
     ["共創参加プラン", 10000],
+    ["農家スポンサー", 24000],
     ["ライトスポンサー", 30000],
   ];
   const match = planAmounts.find(([planName]) => text.includes(planName));
