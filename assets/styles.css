@@ -1558,16 +1558,19 @@ h1 {
   box-shadow: 0 1px 4px rgba(74, 56, 38, 0.22);
 }
 
-.benefits-visual img,
+/* インフォグラフィック画像は切り抜かず全体を表示（16:9素材をそのまま） */
+.benefits-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
 .benefits-visual .placeholder {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 3px;
-}
-
-.benefits-visual img {
-  object-fit: cover;
 }
 
 .benefits-visual .placeholder {
