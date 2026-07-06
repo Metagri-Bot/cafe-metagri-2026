@@ -7,6 +7,7 @@
 - `index.html`: LP全体ハブ
 - `co-creators.html`: 共創者募集ページ
 - `support.html`: クラファン企画・支援プランページ
+- `partner.html`: 企業共創パートナー募集ページ
 - `day-guide.html`: 実施当日の案内の準備ページ
 - `report.html`: 実施後の事後報告の準備ページ
 - `terms.html`: 販売規約の準備ページ
