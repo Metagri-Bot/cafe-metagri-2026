@@ -1507,6 +1507,30 @@ h1 {
   border-bottom-style: solid;
 }
 
+/* ---------- PC表示ブラッシュアップ（2026-07-06） ---------- */
+/* 提供内容一覧テーブル: 左カラム過大・右カラム窮屈を是正し、左右のバランスを取る */
+#offer .info-table {
+  table-layout: fixed;
+}
+
+#offer .info-table th:first-child {
+  width: 54%;
+}
+
+#offer .info-table th:nth-child(2) {
+  width: 46%;
+}
+
+/* コンテンツ量が非対称な2カラムは上揃えで下側の余白を締める */
+.partner-page .split {
+  align-items: start;
+}
+
+/* 申込フォーム横のチェックリストは高さを引き伸ばさず自然な高さで上寄せ */
+.form-split {
+  align-items: start;
+}
+
 /* ---------- レスポンシブ ---------- */
 
 @media (max-width: 860px) {
