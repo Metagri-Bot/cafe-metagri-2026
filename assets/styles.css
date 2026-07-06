@@ -1531,6 +1531,82 @@ h1 {
   align-items: start;
 }
 
+/* 提供価値「3つの設計」: 16:9ビジュアル枠（画像は後日差し込み） */
+.benefits-visual {
+  position: relative;
+  margin: 0 0 40px;
+  padding: 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 6px 9px 0 rgba(74, 56, 38, 0.14), 0 12px 32px rgba(74, 56, 38, 0.12);
+  transform: rotate(-0.4deg);
+}
+
+.benefits-visual::before {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  width: 128px;
+  height: 26px;
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.28) 0 7px, transparent 7px 14px),
+    rgba(233, 169, 61, 0.85);
+  transform: translateX(-50%) rotate(2deg);
+  clip-path: polygon(2% 0%, 98% 6%, 100% 40%, 98% 100%, 2% 94%, 0% 52%);
+  box-shadow: 0 1px 4px rgba(74, 56, 38, 0.22);
+}
+
+.benefits-visual img,
+.benefits-visual .placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 3px;
+}
+
+.benefits-visual img {
+  object-fit: cover;
+}
+
+.benefits-visual .placeholder {
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  padding: 20px;
+  background:
+    repeating-linear-gradient(45deg, rgba(74, 56, 38, 0.05) 0 14px, transparent 14px 28px),
+    var(--kraft-deep);
+  border: 2px dashed var(--line);
+  color: var(--muted);
+  font-family: var(--font-display);
+  text-align: center;
+}
+
+.benefits-visual .placeholder strong {
+  color: var(--soil);
+  font-size: clamp(18px, 2.4vw, 24px);
+}
+
+.benefits-visual .placeholder span {
+  font-size: 14px;
+}
+
+/* 3つの設計カード: 本文と補足リストの余白を整える */
+.partner-designs .card p {
+  margin-bottom: 12px;
+}
+
+.partner-designs .card p:last-child {
+  margin-bottom: 0;
+}
+
+.partner-designs .card .check-list {
+  margin: 0 0 14px;
+  font-size: 14px;
+}
+
 /* ---------- レスポンシブ ---------- */
 
 @media (max-width: 860px) {
