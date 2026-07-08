@@ -6,7 +6,6 @@
   const gate = document.querySelector('[data-gate]');
   const content = document.querySelector('[data-report-content]');
   const error = document.querySelector('[data-gate-error]');
-  const lockButton = document.querySelector('[data-lock-report]');
 
   const toHex = (buffer) => Array.from(new Uint8Array(buffer))
     .map((byte) => byte.toString(16).padStart(2, '0'))
@@ -47,8 +46,4 @@
     if (error) error.hidden = false;
   });
 
-  lockButton?.addEventListener('click', () => {
-    localStorage.removeItem(STORAGE_KEY);
-    showGate();
-  });
 })();
