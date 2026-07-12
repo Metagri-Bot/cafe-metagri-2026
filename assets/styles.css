@@ -498,6 +498,64 @@ h1 {
   border-radius: 3px;
 }
 
+.experience-benefit {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: 24px 34px;
+  margin-bottom: 34px;
+  padding: 30px;
+  border: 2px solid var(--leaf);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.48), transparent 62%),
+    var(--cream);
+  background-image: var(--grain);
+  box-shadow: var(--shadow);
+}
+
+.experience-benefit h3 {
+  margin: 4px 0 12px;
+  color: var(--leaf-dark);
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.35;
+}
+
+.experience-benefit p {
+  margin-bottom: 0;
+}
+
+.experience-details {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.experience-details div {
+  padding: 12px 14px;
+  border-left: 4px solid var(--leaf);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.experience-details dt {
+  color: var(--leaf-dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.experience-details dd {
+  margin: 2px 0 0;
+  font-weight: 700;
+}
+
+.experience-reassurance {
+  grid-column: 1 / -1;
+  padding: 15px 18px;
+  border-radius: 10px;
+  background: rgba(240, 207, 137, 0.3);
+  color: var(--soil);
+}
+
 .return-legend {
   display: grid;
   grid-template-columns: 1fr;
@@ -1673,6 +1731,7 @@ h1 {
   .support-hero-grid,
   .partner-hero-grid,
   .return-overview,
+  .experience-benefit,
   .grid.two,
   .grid.three,
   .grid.four,
