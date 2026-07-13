@@ -502,7 +502,7 @@ h1 {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
   gap: 24px 34px;
-  margin-bottom: 34px;
+  margin: 28px 0 0;
   padding: 30px;
   border: 2px solid var(--leaf);
   border-radius: var(--radius);
@@ -554,6 +554,48 @@ h1 {
   border-radius: 10px;
   background: rgba(240, 207, 137, 0.3);
   color: var(--soil);
+}
+
+.kitchen-section {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(242, 232, 213, 0.35)),
+    var(--cream);
+}
+
+.kitchen-feature {
+  max-width: 1120px;
+}
+
+.kitchen-visual {
+  position: relative;
+  margin: 0;
+  padding: 10px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  background: #fffdf7;
+  box-shadow: 6px 9px 0 rgba(74, 56, 38, 0.14), 0 12px 32px rgba(74, 56, 38, 0.12);
+  transform: rotate(-0.25deg);
+}
+
+.kitchen-visual::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -12px;
+  left: 50%;
+  width: 118px;
+  height: 27px;
+  background: rgba(233, 169, 61, 0.82);
+  box-shadow: 0 1px 4px rgba(74, 56, 38, 0.2);
+  transform: translateX(-50%) rotate(1.5deg);
+  clip-path: polygon(2% 0%, 98% 5%, 100% 45%, 98% 100%, 2% 94%, 0% 50%);
+}
+
+.kitchen-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius) - 5px);
 }
 
 .return-legend {
@@ -1849,6 +1891,16 @@ h1 {
   .return-overview {
     gap: 24px;
     margin-bottom: 28px;
+  }
+
+  .kitchen-visual {
+    padding: 7px;
+    transform: none;
+  }
+
+  .experience-benefit {
+    margin-top: 22px;
+    padding: 24px 20px;
   }
 
   .return-legend {
