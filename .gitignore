@@ -5,3 +5,4 @@ vercel-dev.*.log
 .env.*.local
 
 .vercel
+metagri-kitchen-materials/
