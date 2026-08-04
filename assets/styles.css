@@ -598,6 +598,47 @@ h1 {
   border-radius: calc(var(--radius) - 5px);
 }
 
+.kitchen-video-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
+  gap: 28px 42px;
+  align-items: center;
+  margin: 38px 0 0;
+  padding: 30px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 247, 0.82);
+  box-shadow: 0 12px 30px rgba(74, 56, 38, 0.1);
+}
+
+.kitchen-video-copy h3 {
+  margin: 4px 0 12px;
+  color: var(--soil);
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.35;
+}
+
+.kitchen-video-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.kitchen-video-frame {
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border: 1.5px solid rgba(74, 56, 38, 0.28);
+  border-radius: 16px;
+  background: #18130d;
+  box-shadow: 5px 7px 0 rgba(74, 56, 38, 0.14);
+}
+
+.kitchen-video-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .return-legend {
   display: grid;
   grid-template-columns: 1fr;
@@ -1046,6 +1087,89 @@ h1 {
     rgba(240, 203, 122, 0.95);
   color: #6c4a08;
   transform: rotate(1.8deg);
+}
+
+.status.paused {
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.22) 0 6px, transparent 6px 12px),
+    rgba(224, 160, 132, 0.96);
+  color: #5f2617;
+  transform: rotate(-1deg);
+}
+
+.co-creators-hero {
+  --hero-image: url("../assets/hero-cafe-metagri.png");
+}
+
+/* ---------- 開催延期・受付休止のお知らせ ---------- */
+
+.campaign-notice {
+  padding: 42px 0;
+  border-top: 1px solid rgba(122, 67, 45, 0.22);
+  border-bottom: 1px solid rgba(122, 67, 45, 0.22);
+  background:
+    linear-gradient(135deg, rgba(255, 244, 226, 0.96), rgba(245, 224, 206, 0.96)),
+    var(--grain);
+}
+
+.campaign-notice-inner {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.4fr);
+  gap: 30px 54px;
+  align-items: start;
+}
+
+.campaign-notice h2 {
+  margin: 0;
+  color: var(--soil);
+  font-size: clamp(24px, 3.2vw, 34px);
+  line-height: 1.45;
+}
+
+.campaign-notice-copy {
+  padding: 24px 26px;
+  border: 1.5px solid rgba(122, 67, 45, 0.3);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 247, 0.86);
+  box-shadow: 5px 7px 0 rgba(122, 67, 45, 0.1);
+}
+
+.campaign-notice-copy p,
+.campaign-notice-copy li {
+  color: #59493e;
+  line-height: 1.85;
+}
+
+.campaign-notice-copy p:first-child {
+  margin-top: 0;
+}
+
+.campaign-notice-copy ul {
+  margin: 14px 0;
+  padding-left: 1.3em;
+}
+
+.campaign-notice-date {
+  margin-bottom: 0;
+  color: var(--muted) !important;
+  font-size: 13px;
+}
+
+.application-form-paused {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.application-form-paused p {
+  max-width: 620px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+[data-campaign-status="paused"] .js-support-cta {
+  opacity: 0.65;
+  pointer-events: none;
 }
 
 .page-tile a {
@@ -1772,8 +1896,10 @@ h1 {
   .split,
   .support-hero-grid,
   .partner-hero-grid,
+  .campaign-notice-inner,
   .return-overview,
   .experience-benefit,
+  .kitchen-video-feature,
   .grid.two,
   .grid.three,
   .grid.four,
@@ -1901,6 +2027,17 @@ h1 {
   .experience-benefit {
     margin-top: 22px;
     padding: 24px 20px;
+  }
+
+  .kitchen-video-feature {
+    gap: 22px;
+    margin-top: 28px;
+    padding: 24px 20px;
+  }
+
+  .kitchen-video-frame {
+    width: min(100%, 320px);
+    justify-self: center;
   }
 
   .return-legend {
