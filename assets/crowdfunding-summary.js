@@ -1,8 +1,20 @@
 (async function () {
   const root = document.querySelector("[data-crowdfunding-summary]");
-  const supportFormUrl = document.querySelector("[data-support-form-url]")?.getAttribute("data-support-form-url") || "";
+  const supportPage = document.querySelector("[data-support-form-url]");
+  const supportFormUrl = supportPage?.getAttribute("data-support-form-url") || "";
+  const campaignIsPaused = supportPage?.getAttribute("data-campaign-status") === "paused";
 
   document.querySelectorAll(".js-support-cta[data-plan]").forEach((button) => {
+    if (campaignIsPaused) {
+      button.textContent = "新規受付は一時停止中です";
+      button.classList.add("cta-disabled");
+      button.setAttribute("aria-disabled", "true");
+      button.removeAttribute("href");
+      button.removeAttribute("target");
+      button.removeAttribute("rel");
+      return;
+    }
+
     const buttonFormUrl = button.getAttribute("data-form-url") || "";
     if (buttonFormUrl) {
       button.href = buttonFormUrl;
@@ -66,6 +78,12 @@
 
   function updateCountdown() {
     if (!countdownRemaining || Number.isNaN(deadline.getTime())) return;
+
+    if (campaignIsPaused) {
+      countdownRemaining.textContent = "受付休止";
+      countdownRemaining.classList.add("is-ended");
+      return;
+    }
 
     const remainingMs = deadline.getTime() - Date.now();
     if (remainingMs <= 0) {
